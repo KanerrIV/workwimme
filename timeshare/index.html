@@ -231,7 +231,7 @@ src="https://www.facebook.com/tr?id=2139743633615863&ev=PageView&noscript=1"
     </div>
 
     <div class="cta-wrap">
-      <a href="https://giftclick.org/aff_c?offer_id=3941&aff_id=200821" class="cta-btn" onclick="fbq('track', 'Lead');">See If You Qualify</a>
+      <a href="https://linkthem.net/aff_c?offer_id=3941&aff_id=200821" class="cta-btn" onclick="fbq('track', 'Lead');">See If You Qualify</a>
       <div class="cta-sub">Free to check &nbsp;·&nbsp; Takes about a minute</div>
     </div>
 
@@ -244,7 +244,7 @@ src="https://www.facebook.com/tr?id=2139743633615863&ev=PageView&noscript=1"
     </div>
 
     <div class="cta-wrap">
-      <a href="https://giftclick.org/aff_c?offer_id=3941&aff_id=200821" class="cta-btn" onclick="fbq('track', 'Lead');">Check My Options Now</a>
+      <a href="https://linkthem.net/aff_c?offer_id=3941&aff_id=200821" class="cta-btn" onclick="fbq('track', 'Lead');">Check My Options Now</a>
       <div class="cta-sub">Free to check &nbsp;·&nbsp; Takes about a minute</div>
     </div>
 
@@ -266,5 +266,33 @@ src="https://www.facebook.com/tr?id=2139743633615863&ev=PageView&noscript=1"
     </p>
   </footer>
 
+<script>
+(function () {
+  var OPEN = '{' + '{';
+  var KEYS = ['fbclid','ad_id','adset_id','campaign_id','campaign_name','placement','source'];
+  function isMacro(v){ return !v || v.indexOf(OPEN) !== -1 || v.indexOf('%7B%7B') !== -1; }
+  function grab(){
+    var s = {}, qs = new URLSearchParams(location.search);
+    KEYS.forEach(function (k) {
+      var v = qs.get(k);
+      if (v && !isMacro(v)) sessionStorage.setItem('q_' + k, v);
+      var saved = sessionStorage.getItem('q_' + k);
+      if (saved && !isMacro(saved)) s[k] = saved;
+    });
+    return s;
+  }
+  grab();
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href*="aff_c"]');
+    if (!a) return;
+    var s = grab();
+    try {
+      var u = new URL(a.href, location.href);
+      Object.keys(s).forEach(function (k) { u.searchParams.set(k, s[k]); });
+      a.href = u.toString();
+    } catch (err) {}
+  }, true);
+})();
+</script>
 </body>
 </html>
