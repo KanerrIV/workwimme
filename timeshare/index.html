@@ -172,6 +172,23 @@
     .dek{font-size:0.98rem;}
   }
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2139743633615863');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2139743633615863&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -214,7 +231,7 @@
     </div>
 
     <div class="cta-wrap">
-      <a href="https://giftclick.org/aff_c?offer_id=3941&aff_id=200821" class="cta-btn">See If You Qualify</a>
+      <a href="https://giftclick.org/aff_c?offer_id=3941&aff_id=200821" class="cta-btn" onclick="fbq('track', 'Lead');">See If You Qualify</a>
       <div class="cta-sub">Free to check &nbsp;·&nbsp; Takes about a minute</div>
     </div>
 
@@ -227,7 +244,7 @@
     </div>
 
     <div class="cta-wrap">
-      <a href="https://giftclick.org/aff_c?offer_id=3941&aff_id=200821" class="cta-btn">Check My Options Now</a>
+      <a href="https://giftclick.org/aff_c?offer_id=3941&aff_id=200821" class="cta-btn" onclick="fbq('track', 'Lead');">Check My Options Now</a>
       <div class="cta-sub">Free to check &nbsp;·&nbsp; Takes about a minute</div>
     </div>
 
