@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grocery Grab &mdash; See What's Out There</title>
+<style>
+  :root{
+    --paper:#FAF6EC;
+    --paper-dim:#F1EBDB;
+    --ink:#2C2A22;
+    --ink-soft:#5B5844;
+    --sage:#6E8F6C;
+    --sage-deep:#4F6E4E;
+    --mustard:#E3A23C;
+    --line:#DFD6BC;
+    --card:#FFFFFF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+
+  .wrap{
+    max-width:680px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* header */
+  header{
+    padding:22px 0 0;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:700;
+    font-size:17px;
+    letter-spacing:.2px;
+  }
+  .brand .dot{
+    width:10px;height:10px;border-radius:50%;
+    background:var(--sage);
+    display:inline-block;
+  }
+
+  /* hero */
+  .hero{
+    padding:44px 0 30px;
+  }
+  .eyebrow{
+    display:inline-block;
+    font-size:13px;
+    font-weight:600;
+    color:var(--sage-deep);
+    background:rgba(110,143,108,0.12);
+    padding:6px 12px;
+    border-radius:100px;
+    margin-bottom:18px;
+  }
+  h1{
+    font-size:clamp(30px,6vw,42px);
+    line-height:1.12;
+    font-weight:800;
+    letter-spacing:-0.5px;
+    margin-bottom:16px;
+  }
+  h1 span{
+    color:var(--sage-deep);
+  }
+  .sub{
+    font-size:17px;
+    color:var(--ink-soft);
+    max-width:520px;
+    margin-bottom:28px;
+  }
+
+  .cta-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--sage-deep);
+    color:#fff;
+    font-weight:700;
+    font-size:16px;
+    padding:15px 26px;
+    border-radius:12px;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+    box-shadow:0 6px 0 #3d5a3c;
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .cta-btn:hover{
+    transform:translateY(2px);
+    box-shadow:0 4px 0 #3d5a3c;
+  }
+  .cta-btn svg{width:18px;height:18px;flex-shrink:0;}
+
+  .microcopy{
+    font-size:13px;
+    color:var(--ink-soft);
+    margin-top:10px;
+  }
+
+  /* receipt card - signature element */
+  .receipt{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px 22px 18px;
+    margin:36px 0;
+    box-shadow:0 2px 0 var(--line);
+    position:relative;
+  }
+  .receipt::before{
+    content:"WHAT PEOPLE ARE LOOKING INTO";
+    display:block;
+    font-size:11px;
+    letter-spacing:1.2px;
+    font-weight:700;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+  }
+  .receipt ul{
+    list-style:none;
+  }
+  .receipt li{
+    display:flex;
+    justify-content:space-between;
+    padding:8px 0;
+    border-bottom:1px dashed var(--line);
+    font-size:15px;
+  }
+  .receipt li:last-child{border-bottom:none;}
+  .receipt .tag{
+    font-size:12px;
+    color:var(--sage-deep);
+    font-weight:600;
+  }
+
+  /* steps */
+  .steps{
+    margin:44px 0;
+  }
+  h2{
+    font-size:21px;
+    font-weight:800;
+    margin-bottom:20px;
+  }
+  .step{
+    display:flex;
+    gap:16px;
+    padding:16px 0;
+    border-top:1px solid var(--line);
+  }
+  .step:last-child{border-bottom:1px solid var(--line);}
+  .step .mark{
+    flex-shrink:0;
+    width:34px;height:34px;
+    border-radius:50%;
+    background:var(--paper-dim);
+    display:flex;align-items:center;justify-content:center;
+    font-size:16px;
+  }
+  .step .body b{
+    display:block;
+    font-size:15.5px;
+    margin-bottom:3px;
+  }
+  .step .body span{
+    font-size:14.5px;
+    color:var(--ink-soft);
+  }
+
+  /* honest note */
+  .note{
+    background:var(--paper-dim);
+    border-radius:14px;
+    padding:20px 22px;
+    margin:36px 0;
+    font-size:14.5px;
+    color:var(--ink-soft);
+  }
+  .note b{color:var(--ink);}
+
+  /* faq */
+  .faq{margin:40px 0;}
+  .faq-item{
+    border-top:1px solid var(--line);
+    padding:16px 0;
+  }
+  .faq-item:last-child{border-bottom:1px solid var(--line);}
+  .faq-item b{
+    display:block;
+    font-size:15.5px;
+    margin-bottom:6px;
+  }
+  .faq-item p{
+    font-size:14.5px;
+    color:var(--ink-soft);
+  }
+
+  /* final cta */
+  .final{
+    text-align:center;
+    padding:20px 0 46px;
+  }
+  .final h2{
+    font-size:24px;
+    margin-bottom:10px;
+  }
+  .final p{
+    color:var(--ink-soft);
+    font-size:15px;
+    margin-bottom:22px;
+  }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:26px 0 40px;
+  }
+  footer p{
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-bottom:10px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="wrap">
+
+    <header>
+      <div class="brand"><span class="dot"></span> Grocery Grab</div>
+    </header>
+
+    <section class="hero">
+      <span class="eyebrow">Free &middot; Takes about 2 minutes</span>
+      <h1>Groceries add up fast.<br><span>See what help might be out there.</span></h1>
+      <p class="sub">
+        This is a simple, independent search &mdash; it checks against a list of grant and
+        assistance programs (some government, some private) and shows you what's worth a closer look
+        based on a few quick questions. No cost, no obligation.
+      </p>
+
+      <a class="cta-btn" href="https://grocerygrabgiveaway.com" id="mainCta">
+        Start the free search
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <p class="microcopy">Takes 2 minutes &middot; nothing to buy</p>
+    </section>
+
+    <div class="receipt">
+      <ul>
+        <li>Grocery &amp; food assistance programs <span class="tag">Common search</span></li>
+        <li>Utility bill relief programs <span class="tag">Common search</span></li>
+        <li>General household support grants <span class="tag">Common search</span></li>
+      </ul>
+    </div>
+
+    <section class="steps">
+      <h2>How it works</h2>
+      <div class="step">
+        <div class="mark">1</div>
+        <div class="body">
+          <b>Answer a few quick questions</b>
+          <span>Just enough to narrow down which programs are worth checking &mdash; nothing complicated.</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="mark">2</div>
+        <div class="body">
+          <b>Get a list to look into</b>
+          <span>You'll see programs that may be relevant. You decide which ones to look into further.</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="mark">3</div>
+        <div class="body">
+          <b>Follow up on your own terms</b>
+          <span>Each program has its own eligibility rules and application steps &mdash; this search just points you toward them.</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="note">
+      <b>Just so it's clear:</b> this is an independent search tool, not a government agency or
+      program, and it doesn't decide anyone's eligibility. Whether you qualify for any program
+      depends on that program's own rules. There's no guarantee you'll be approved for anything.
+    </div>
+
+    <section class="faq">
+      <h2>Quick questions</h2>
+      <div class="faq-item">
+        <b>Does this cost anything?</b>
+        <p>No. The search itself is free to use.</p>
+      </div>
+      <div class="faq-item">
+        <b>Is this a government website?</b>
+        <p>No. This is an independent tool that helps you find programs to look into &mdash; it isn't run by any government agency.</p>
+      </div>
+      <div class="faq-item">
+        <b>Am I guaranteed to get help?</b>
+        <p>No. Every program has its own eligibility requirements, and this search doesn't guarantee approval for anything.</p>
+      </div>
+    </section>
+
+    <div class="final">
+      <h2>Ready to see what's out there?</h2>
+      <p>It only takes a couple minutes to check.</p>
+      <a class="cta-btn" href="https://grocerygrabgiveaway.com">
+        Start the free search
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+
+    <footer>
+      <p>Grocery Grab is an independent informational search tool and is not affiliated with, endorsed by, or operated by any government agency. Results are informational only and do not constitute approval, eligibility, or a guarantee of any benefit amount.</p>
+      <p>&copy; 2026 Grocery Grab. All rights reserved.</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>
