@@ -218,12 +218,6 @@
       display: block;
     }
 
-    .quiz-result p {
-      margin: 0 0 15px;
-      font-size: 16px;
-      line-height: 1.5;
-    }
-
     .cta {
       display: flex;
       align-items: center;
@@ -395,25 +389,22 @@
         <p class="quiz-label">Quick Question</p>
 
         <h2>
-          Would $552 a year be enough to make reviewing your current policy
-          worthwhile?
+          Would you need more than $552 a year in savings?
         </h2>
 
         <div class="answers">
           <button class="answer" data-answer="more">
             <strong>Yes</strong>
-            <small>That would be helpful</small>
+            <small>I’d need more than that</small>
           </button>
 
           <button class="answer" data-answer="helpful">
             <strong>No</strong>
-            <small>I need more to switch</small>
+            <small>That would make a difference</small>
           </button>
         </div>
 
         <div class="quiz-result" id="quizResult">
-          <p id="quizMessage"></p>
-
           <a
             class="cta affiliate-link"
             data-placement="quiz"
@@ -554,13 +545,16 @@
           fbq("trackCustom", "BridgeCTA", {
             placement: link.dataset.placement
           });
+
+          fbq("track", "InitiateCheckout", {
+            placement: link.dataset.placement
+          });
         }
       });
     });
 
     const answerButtons = document.querySelectorAll(".answer");
     const quizResult = document.getElementById("quizResult");
-    const quizMessage = document.getElementById("quizMessage");
     const quizCTA = quizResult.querySelector(".affiliate-link");
 
     answerButtons.forEach(button => {
@@ -573,23 +567,8 @@
 
         button.classList.add("selected");
 
-        if (answer === "helpful") {
-          quizMessage.textContent =
-            "The only way to know is to check.";
-          quizMessage.hidden = false;
-        } else {
-          quizMessage.textContent = "";
-          quizMessage.hidden = true;
-        }
-
         quizCTA.dataset.placement = `quiz-${answer}`;
         quizResult.classList.add("visible");
-
-        if (window.fbq) {
-          fbq("trackCustom", "InitiateCheckout", {
-            answer: answer
-          });
-        }
       });
     });
   </script>
