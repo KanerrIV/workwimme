@@ -334,13 +334,44 @@
       line-height: 1.6;
     }
 
-    footer div {
+    footer .footer-inner {
       max-width: 760px;
       margin: auto;
     }
 
     footer p {
       margin: 0 0 12px;
+    }
+
+    .legal-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 14px;
+      margin: 0 0 22px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #d4d1c8;
+      font-size: 11px;
+    }
+
+    .legal-links a {
+      color: var(--dark-green);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .footer-disclosures {
+      text-align: left;
+    }
+
+    .footer-disclosures strong {
+      color: #444b45;
+    }
+
+    .copyright {
+      margin-top: 18px;
+      text-align: center;
     }
 
     @media (min-width: 700px) {
@@ -505,20 +536,54 @@
   </article>
 
   <footer>
-    <div>
+    <div class="footer-inner">
+      <nav class="legal-links" aria-label="Legal">
+        <a href="privacy.html">Privacy Policy</a>
+        <span aria-hidden="true">•</span>
+        <a href="terms.html">Terms &amp; Conditions</a>
+      </nav>
+
+      <section class="footer-disclosures" aria-label="Advertising and insurance disclosures">
       <p>
         <strong>Advertiser disclosure:</strong> This is sponsored editorial
-        content. We may receive compensation when readers visit a partner
-        through links on this page.
+        content. We may receive compensation if you click a partner link or
+        complete an action on a partner website. This does not increase your
+        cost.
       </p>
 
       <p>
-        The savings example describes an individual homeowner’s reported
-        experience and is not a promise of future results. Availability,
-        pricing, coverage, and savings depend on individual circumstances.
+        <strong>Individual results:</strong> The $552 savings example describes
+        one homeowner’s reported experience. It is not a typical-results claim,
+        promise, or guarantee. Your eligibility, pricing, coverage, and savings,
+        if any, will depend on your home, location, current policy, selected
+        coverage, carrier, underwriting, and other individual factors.
       </p>
 
-      <p>© 2026 Policy Review Journal</p>
+      <p>
+        <strong>Insurance disclaimer:</strong> This website provides advertising
+        and general informational content only. It does not issue, bind, or
+        underwrite insurance, provide insurance or legal advice, or make
+        eligibility or coverage decisions. Review policy terms, exclusions,
+        limits, deductibles, and carrier information before changing coverage.
+      </p>
+
+      <p>
+        <strong>Third-party notice:</strong> Selecting a “Review My Policy” link
+        will take you to an independent third-party website. Any information you
+        submit there is governed by that website’s privacy policy and terms. We
+        do not control the availability, pricing, coverage, or practices of
+        third-party providers.
+      </p>
+
+      <p>
+        <strong>Tracking notice:</strong> This page uses the Meta Pixel and
+        similar technologies to measure visits and link interactions. Please
+        review our <a href="privacy.html">Privacy Policy</a> for additional
+        information.
+      </p>
+      </section>
+
+      <p class="copyright">© 2026 Policy Review Journal</p>
     </div>
   </footer>
 
