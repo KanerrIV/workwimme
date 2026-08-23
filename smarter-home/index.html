@@ -218,6 +218,12 @@
       display: block;
     }
 
+    .quiz-result p {
+      margin: 0 0 15px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
     .cta {
       display: flex;
       align-items: center;
@@ -405,6 +411,8 @@
         </div>
 
         <div class="quiz-result" id="quizResult">
+          <p id="quizMessage" hidden></p>
+
           <a
             class="cta affiliate-link"
             data-placement="quiz"
@@ -555,6 +563,7 @@
 
     const answerButtons = document.querySelectorAll(".answer");
     const quizResult = document.getElementById("quizResult");
+    const quizMessage = document.getElementById("quizMessage");
     const quizCTA = quizResult.querySelector(".affiliate-link");
 
     answerButtons.forEach(button => {
@@ -566,6 +575,15 @@
         });
 
         button.classList.add("selected");
+
+        if (answer === "more") {
+          quizMessage.textContent =
+            "The only way to know is to check.";
+          quizMessage.hidden = false;
+        } else {
+          quizMessage.textContent = "";
+          quizMessage.hidden = true;
+        }
 
         quizCTA.dataset.placement = `quiz-${answer}`;
         quizResult.classList.add("visible");
