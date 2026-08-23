@@ -412,6 +412,7 @@
         </div>
 
         <div class="quiz-result" id="quizResult">
+          <p id="quizMessage"></p>
 
           <a
             class="cta affiliate-link"
@@ -559,6 +560,7 @@
 
     const answerButtons = document.querySelectorAll(".answer");
     const quizResult = document.getElementById("quizResult");
+    const quizMessage = document.getElementById("quizMessage");
     const quizCTA = quizResult.querySelector(".affiliate-link");
 
     answerButtons.forEach(button => {
@@ -570,6 +572,15 @@
         });
 
         button.classList.add("selected");
+
+        if (answer === "helpful") {
+          quizMessage.textContent =
+            "The only way to know is to check.";
+          quizMessage.hidden = false;
+        } else {
+          quizMessage.textContent = "";
+          quizMessage.hidden = true;
+        }
 
         quizCTA.dataset.placement = `quiz-${answer}`;
         quizResult.classList.add("visible");
